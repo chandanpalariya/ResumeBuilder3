@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 8000; // Render uses env PORT
 // Middleware
 app.use(
   cors({
-    origin: "http://localhost:5173" || " http://localhost:5174", // your frontend URL
+    origin: "https://resumebuilder4.onrender.com/", // your frontend URL
     credentials: true, // allow cookies
   })
 );
