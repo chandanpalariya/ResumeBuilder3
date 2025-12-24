@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon  node server.js"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,6 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.16.5",
     "multer": "^2.0.2",
-    "nodemon": "^3.1.10"
+    
   }
 }
