@@ -11,32 +11,44 @@ const _filename = fileURLToPath(import.meta.url);
 const _dirname = path.dirname(_filename);
 
 const app = express();
-const PORT = process.env.PORT || 8000; // Render uses env PORT
+const PORT = process.env.PORT || 8000;
 
-// Middleware
+// CORS
 app.use(
   cors({
-    origin: "https://resumebuilder4.onrender.com/", // your frontend URL
-    credentials: true, // allow cookies
+    origin: [
+      process.env.FRONTEND_URL,
+      "http://localhost:5173",
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+app.options("*", cors());
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use("/api/auth", userRouter);
 app.use("/api/resume", resumeRoutes);
 
-// Serve uploads folder
+// Static
 app.use("/uploads", express.static(path.join(_dirname, "uploads")));
 
-// Health check
+// Health
 app.get("/", (req, res) => res.send("Server is running"));
 
-// Connect DB & start server
+// Start server
 connectDb()
   .then(() => {
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server running on port ${PORT}`);
+    });
   })
   .catch((err) => {
     console.error("Failed to connect DB", err);
+    process.exit(1);
   });
