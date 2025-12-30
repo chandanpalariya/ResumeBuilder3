@@ -26,8 +26,7 @@ Utils: Axios, Moment.js
 
 🚀 Run Locally
 # Clone repo
-git clone https://github.com/your-username/resume-builder.git
-
+git clone https://github.com/chandanpalariya/ResumeBuilder3.git
 # Backend
 cd backend
 npm install
