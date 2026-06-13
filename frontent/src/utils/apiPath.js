@@ -1,4 +1,4 @@
-export const BASE_URL="https://resumebuilder5.onrender.com/"
+export const BASE_URL="https://resumebuilder3.onrender.com/"
 
 //routes used for frontent
 
